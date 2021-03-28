@@ -22,7 +22,7 @@ void introduction() {
 
     direc = "menu";
 
-    cout << "Welcome to our holistic health application: " << endl;
+    cout << "Welcome to our Home Garden: " << endl;
 
     cout << "Please enter your name:" << std::endl;
     cin >> name;
