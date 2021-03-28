@@ -6,7 +6,8 @@ string name;
 double area = 0;
 double area_remaining = 0;
 string direc = "menu";
-bool done = false;
+
+int tomatoes = 0;
 
 class fruitsandvegetables
 {
@@ -22,6 +23,9 @@ class meatsandnuts
 
 };
 void introduction() {
+
+    direc = "menu";
+
     cout << "Welcome to our holistic health application: " << endl;
 
     cout << "Please enter your name:" << std::endl;
@@ -36,7 +40,7 @@ void introduction() {
 void menu() {
     cout << "Select what you would like to farm: " << endl;
 
-    cout << "1. Vegetables" << endl << "9. Exit Program" << endl;
+    cout << "1. Vegetables" << endl << "9. Finish or Restart Program" << endl;
     int menu;
     cin >> menu;
 
@@ -50,6 +54,39 @@ switch(menu) {
 }
 }
 
+int use_area(double item_size, string name){
+    int choice = 0;
+    int amount = 0;
+    double space = 0;
+
+    choice:
+    cout << "Would you like to add by quantity or fill an area?" << endl << "1. Quantity" << endl << "2. Area" << endl << "3. Cancel";
+    cin >> choice;
+    if (choice != 1 && choice != 2 && choice != 3){
+        goto choice;
+    } else if(choice == 1){
+        quantity:
+        cout << "How many " + name + " would you like?" << endl;
+        cin >> amount;
+        if (amount * item_size > area_remaining){
+            cout << "You don't have enough space." << endl;
+            goto quantity;
+        }
+        area_remaining -= (amount * item_size);
+
+    } else if (choice == 2){
+        area:
+        cout << "How many square feet do you want to fill with " + name + "?" << endl;
+        cin >> space;
+        if (space > area_remaining){
+            space = 0;
+            cout << "Not enough space." << endl;
+            goto area;
+        }
+        
+    }
+    return amount;
+}
 
 void vegetables() {
     cout << "Select a vegetable to learn more about it: " << endl;
@@ -58,16 +95,17 @@ void vegetables() {
     cin >> vegetables;
     switch (vegetables) {
         case 1:
-            cout << "You selected tomatoes!";
+            cout << "You selected tomatoes!" << endl;
+            tomatoes += use_area(.25,"tomatoes");
             break;
         case 2:
-            cout << "You selected carrots!";
+            cout << "You selected carrots!" << endl;
             break;
         case 3:
-            cout << "You selected almonds!";
+            cout << "You selected almonds!" << endl;
             break;
         case 4:
-            cout << "You selected potatoes!";
+            cout << "You selected potatoes!" << endl;
             break;
         case 9:
             direc = "menu";
@@ -82,16 +120,23 @@ int space(double ){
 
 int main() {
 
+    main:
     int done_confirmation = 0;
 
     introduction();
 
-    while(done != true){
+    while(true){
         if (area_remaining == 0){
             cout << "You have used all of your space!" << endl;
             break;
         }
-        if (direc == "menu"){
+        else if (direc == "exit"){
+            break;
+        }
+        else if (direc == "intro"){
+            introduction();
+        }
+        else if (direc == "menu"){
             menu();
         }
         else if(direc == "vegetables"){
@@ -105,10 +150,18 @@ int main() {
 
     if(done_confirmation == 1){
         area_remaining = area;
-        direc = "menu"; // blank seedcount later
+        direc = "intro";
+        tomatoes = 0;
+        goto main;
     }
     else if (done_confirmation == 2){
-        cout << "Garden Report" << endl;
+        double area_used = area - area_remaining;
+        cout << "Garden Report:" << endl << "Garden Size: ";
+        cout << area << endl;
+        cout << "Area Used: ";
+        cout << area_used << endl;
+        cout << "Area Available: ";
+        cout << area_remaining << endl;
     } else goto done;
 
     }
