@@ -275,6 +275,9 @@ int main() {
     else if (done_confirmation == 2){
         cout << "Garden Report:" << endl;
         show_cart();
+        cout << "Goodbye ";
+        cout << name;
+        cout << ".";
     } else goto done;
 
     }
