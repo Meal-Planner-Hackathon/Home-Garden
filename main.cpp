@@ -134,16 +134,16 @@ void show_cart(){
 
     if (beans + broccoli + carrots + potatoes > 0) {
         cout << "Vegetables:" << endl;
-        cart_item(beans, 1 / 9, "beans");
+        cart_item(beans, 1.0 / 9, "beans");
         cart_item(broccoli, 1, "broccoli");
-        cart_item(carrots, 1 / 16, "carrots");
-        cart_item(potatoes, 1 / 4, "potatoes");
+        cart_item(carrots, 1.0 / 16, "carrots");
+        cart_item(potatoes, 1.0 / 4, "potatoes");
     }
 
     if (bell_peppers + strawberries + tomatoes + watermelons > 0) {
         cout << "Fruits" << endl;
         cart_item(bell_peppers, 1, "bell peppers");
-        cart_item(strawberries, 1 / 4, "strawberries");
+        cart_item(strawberries, 1.0 / 4, "strawberries");
         cart_item(tomatoes, 1, "tomatoes");
         cart_item(watermelons, 2, "watermelons");
         cout << endl;
@@ -158,7 +158,7 @@ void vegetables() {
     switch (vegetables) {
         case 1:
             cout << "You selected beans!" << endl;
-            beans += use_area(1/9,"beans");
+            beans += use_area(1.0/9,"beans");
             break;
         case 2:
             cout << "You selected broccoli!" << endl;
@@ -166,11 +166,11 @@ void vegetables() {
             break;
         case 3:
             cout << "You selected carrots!" << endl;
-            carrots += use_area(1/16, "carrots");
+            carrots += use_area(1.0/16, "carrots");
             break;
         case 4:
             cout << "You selected potatoes!" << endl;
-            potatoes += use_area(1/4, "potatoes");
+            potatoes += use_area(1.0/4, "potatoes");
             break;
         case 5:
             direc = "menu";
