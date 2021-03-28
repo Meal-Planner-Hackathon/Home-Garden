@@ -129,9 +129,7 @@ void cart_item (int amount, double size, string name){
     }
 }
 
-void show_cart(){
-    direc = "menu";
-
+void show_vegetables(){
     if (beans + broccoli + carrots + potatoes > 0) {
         cout << "Vegetables:" << endl;
         cart_item(beans, 1.0 / 9, "beans");
@@ -139,7 +137,9 @@ void show_cart(){
         cart_item(carrots, 1.0 / 16, "carrots");
         cart_item(potatoes, 1.0 / 4, "potatoes");
     }
+}
 
+void show_fruit(){
     if (bell_peppers + strawberries + tomatoes + watermelons > 0) {
         cout << "Fruits" << endl;
         cart_item(bell_peppers, 1, "bell peppers");
@@ -149,6 +149,24 @@ void show_cart(){
         cout << endl;
     }
 }
+
+void show_cart(){
+    direc = "menu";
+
+    double area_used = area - area_remaining;
+    cout << "Garden Size: ";
+    cout << area << endl;
+    cout << "Area Used: ";
+    cout << area_used << endl;
+    cout << "Area Available: ";
+    cout << area_remaining << endl;
+    cout << "Garden Contents: " << endl;
+
+    show_vegetables();
+    show_fruit();
+}
+
+
 
 void vegetables() {
     cout << "Select a vegetable to learn more about it: " << endl;
@@ -255,14 +273,7 @@ int main() {
         goto main;
     }
     else if (done_confirmation == 2){
-        double area_used = area - area_remaining;
-        cout << "Garden Report:" << endl << "Garden Size: ";
-        cout << area << endl;
-        cout << "Area Used: ";
-        cout << area_used << endl;
-        cout << "Area Available: ";
-        cout << area_remaining << endl;
-        cout << "Garden Contents: " << endl;
+        cout << "Garden Report:" << endl;
         show_cart();
     } else goto done;
 
